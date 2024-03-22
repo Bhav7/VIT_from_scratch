@@ -100,15 +100,24 @@ def trainer(model, epochs, trainset, testset):
 
 
 
-my_vit = VisionTransformer(4, 196, 64, num_classes, 6, 4)
-my_vit.to(mps_device)
-my_vit_test_acc = trainer(my_vit, 100, trainset, testset)
+my_vit_performances = []
+other_vit_performances = []
+for trial in range(0, 5):
+    my_vit = VisionTransformer(4, 196, 64, num_classes, 6, 4)
+    my_vit.to(mps_device)
+    my_vit_test_acc = trainer(my_vit, 100, trainset, testset)
 
-print(f"Performance of my_vit is : {my_vit_test_acc}")
+    print(f"Test Performance of my_vit is : {my_vit_test_acc}")
+    my_vit_performances.append(my_vit_test_acc)
 
-other_vit = Other_VisionTransformer(64, 64*4, 4, 6, num_classes, 4)
-other_vit.to(mps_device)
 
-other_vit_test_acc = trainer(other_vit, 100, trainset, testset)
+    other_vit = Other_VisionTransformer(64, 64*4, 4, 6, num_classes, 4)
+    other_vit.to(mps_device)
 
-print(f"Performance of other_vit is : {other_vit_test_acc}")
+    other_vit_test_acc = trainer(other_vit, 100, trainset, testset)
+
+    print(f"Test Performance of other_vit is : {other_vit_test_acc}")
+    other_vit_performances.append(other_vit_test_acc)
+
+print(f" The average Test Performance is {torch.mean(torch.tensor(my_vit_performances))} +- {torch.std(torch.tensor(my_vit_performances))}")
+print(f" The average Test Performance is {torch.mean(torch.tensor(other_vit_performances))} +- {torch.std(torch.tensor(other_vit_performances))}")

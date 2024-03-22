@@ -22,7 +22,7 @@ class VisionTransformer(nn.Module):
 
         self.layer_norm = nn.LayerNorm(latent_dimension)
 
-        self.classification_head = nn.Sequential(nn.Linear(latent_dimension, latent_dimension), nn.ReLU(), nn.Linear(latent_dimension, num_classes))
+        self.classification_head = nn.Sequential(nn.Linear(latent_dimension, latent_dimension), nn.GELU(), nn.Linear(latent_dimension, num_classes))
 
     def forward(self, input):
         #Input shape: batch_size x num patches (i.e sequence length) x input_dimension 

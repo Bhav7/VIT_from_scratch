@@ -14,6 +14,6 @@ $ python fashion_mnist_benchmark.py
 Test results:
 
 ```
-My VIT: 0.8727
-Other VIT: 0.8728
+My VIT: 0.87496 +- 0.0037
+Other VIT: 0.86976 +- 0.0062
 ```
