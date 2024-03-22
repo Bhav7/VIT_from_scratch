@@ -11,7 +11,7 @@ To run the code (see imported packages in fashion_mnist_benchmark.py for relevan
 $ python fashion_mnist_benchmark.py 
 ```
 
-Test results:
+Average test results over 5 training runs:
 
 ```
 My VIT: 0.87496 +- 0.0037
