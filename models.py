@@ -8,6 +8,7 @@ from layers import *
 
 
 class VisionTransformer(nn.Module):
+    """ Implementation of Dosovitskiy et als. Vision Transformer Architecture""" 
     def __init__(self, num_patches, input_dimension, latent_dimension, num_classes, num_encoder_blocks, num_heads):
         super().__init__()
         self.projection_layer = nn.Linear(input_dimension, latent_dimension)
